@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="{% url 'scholar:search' %}" method="get">
+        {% csrf_token %}
+        <fieldset>
+            <h1>Search for papers</h1>
+            <input type="text" name="searchQuery" id="searchField" />
+        </fieldset>
+        <input type="submit" value="search">
+    </form>
+    <h3>{{searchQuery}}</h3>
+    <ul>
+        {% for paper in papers %}
+        <li>
+            <h4><a target="_blank" href="{{ paper.link }}">{{ paper.title }}</a></h1>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>
