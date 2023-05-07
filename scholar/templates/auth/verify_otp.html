@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>verify otp</title>
+</head>
+
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <label for="otp">Enter the OTP sent to {{ mobile_number }}:</label>
+        <input type="text" name="otp" required>
+        <button type="submit">Verify OTP</button>
+    </form>
+</body>
+
+</html>

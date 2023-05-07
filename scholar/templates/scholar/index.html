@@ -22,9 +22,12 @@
         {% for paper in papers %}
         <li>
             <h4><a target="_blank" href="{{ paper.link }}">{{ paper.title }}</a></h1>
+                <h5>{{ paper.subTitle }}</h6>
+                    <p>{{ paper.content }}</p>
         </li>
         {% endfor %}
     </ul>
+    <p>{{error}}</p>
 </body>
 
 </html>

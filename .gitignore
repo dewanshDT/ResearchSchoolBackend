@@ -23,7 +23,7 @@ media/
 # Database files
 *.db
 # *.sqlite
-.csv
+*.csv
 
 # Virtual environment
 venv/
