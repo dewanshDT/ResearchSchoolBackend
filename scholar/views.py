@@ -2,12 +2,37 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from scholar.utilities.scrape import getPapers, BlockedIpException
 from django.conf import settings
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
 from twilio.rest import Client
 from .models import User, PaperIndex
 import os
 import errno
 
 # Create your views here.
+
+
+class IndexAPIView(APIView):
+    def get(self, request, format=None):
+        return Response({"message": "get request handled"})
+
+
+class SearchAPIView(APIView):
+    def get(self, request):
+        search_query = request.GET.get("q")
+        papers = []
+        error = None
+
+        if search_query:
+            res = getPapers(search_query, 1)
+            papers = res.itemList
+            error = res.error
+
+        if error is not None:
+            return Response({"error": error}, status=status.HTTP_400_BAD_REQUEST)
+
+        return Response({"searchQuery": search_query, "papers": papers})
 
 
 def send_otp(request):
@@ -87,3 +112,8 @@ def index(request):
         "scholar/index.html",
         {"searchQuery": searchQuery, "papers": papers, "error": error},
     )
+
+
+def custom_404_view(request, exception=None):
+    # Customize the response as per your requirements
+    return Response({"detail": "Not found"}, status=status.HTTP_404_NOT_FOUND)
