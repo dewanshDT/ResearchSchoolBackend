@@ -34,6 +34,7 @@ def getResearchPapers(query="", page=0):
             div = item.find("div", "gs_ri")
             title = div.h3.text.strip()
             subTitle = div.select_one("div.gs_a").text.strip()
+            name = subTitle.split("-")[1].split(",")[0].strip("…").strip()
             link = div.a["href"]
             author_a = div.select_one("div.gs_a a")
             content = div.select_one("div.gs_rs").text.strip()
@@ -41,6 +42,7 @@ def getResearchPapers(query="", page=0):
             itemList.append(
                 {
                     "title": title,
+                    "journal_name": name,
                     "subTitle": subTitle,
                     "link": link,
                     "author": {
@@ -71,8 +73,10 @@ def getPapers(query, num=5):
             papers = res.itemList
             for paper in papers:
                 for index in paperIndex:
-                    ratio = fuzz.partial_ratio(index.journal_name, paper["title"])
-                    if ratio > 90 and len(paperList) < num:
+                    ratio = fuzz.partial_ratio(
+                        index.journal_name, paper["journal_name"]
+                    )
+                    if ratio > 95 and len(paperList) < num:
                         paperList.append(paper)
                         print(index.serial_no, index.journal_name, ratio)
                         break
