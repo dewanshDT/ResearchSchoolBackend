@@ -77,6 +77,9 @@ def getPapers(query, num=5):
                         index.journal_name, paper["journal_name"]
                     )
                     if ratio > 95 and len(paperList) < num:
+                        paper[
+                            "index"
+                        ] = f"{index.abdc} {index.abs} {index.ft50} {index.scopus} {index.wos}"
                         paperList.append(paper)
                         print(index.serial_no, index.journal_name, ratio)
                         break
