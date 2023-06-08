@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from scholar.models import PaperIndex
 from fuzzywuzzy import fuzz
+import re
 
 
 class BlockedIpException(Exception):
@@ -13,6 +14,21 @@ class Response:
         self.status = status
         self.itemList = itemList
         self.error = error
+
+
+def extract_authors_and_year(subtitle):
+    author_pattern = r"([^-,]+(?:, [^-,]+)*)(?=\s*-\s)"  # Pattern to match author names before the dash "-"
+    year_pattern = (
+        r"\b(19|20)\d{2}\b"  # Pattern to match four-digit years starting with 19 or 20
+    )
+
+    author_match = re.search(author_pattern, subtitle)
+    year_match = re.search(year_pattern, subtitle)
+
+    authors = author_match.group().strip() if author_match else None
+    year = int(year_match.group()) if year_match else None
+
+    return authors, year
 
 
 def getResearchPapers(query="", page=0):
@@ -38,15 +54,22 @@ def getResearchPapers(query="", page=0):
             link = div.a["href"]
             author_a = div.select_one("div.gs_a a")
             content = div.select_one("div.gs_rs").text.strip()
+            authors, year = extract_authors_and_year(subTitle)
+            citations = (
+                div.select_one("div.gs_fl")
+                .find_all(recursive=False)[2]
+                .text.split(" ")[2]
+            )
 
             itemList.append(
                 {
                     "title": title,
-                    "journal_name": name,
+                    "journalName": name,
                     "subTitle": subTitle,
                     "link": link,
+                    "year": year,
                     "author": {
-                        "name": author_a.text if author_a else "",
+                        "name": authors if authors else "",
                         "link": "https://scholar.google.com{user}".format(
                             user=author_a["href"]
                         )
@@ -54,6 +77,7 @@ def getResearchPapers(query="", page=0):
                         else "",
                     },
                     "content": content,
+                    "citations": citations,
                 }
             )
         except AttributeError:
@@ -73,13 +97,11 @@ def getPapers(query, num=5):
             papers = res.itemList
             for paper in papers:
                 for index in paperIndex:
-                    ratio = fuzz.partial_ratio(
-                        index.journal_name, paper["journal_name"]
-                    )
+                    ratio = fuzz.partial_ratio(index.journal_name, paper["journalName"])
                     if ratio > 95 and len(paperList) < num:
                         paper[
                             "index"
-                        ] = f"{index.abdc} {index.abs} {index.ft50} {index.scopus} {index.wos}"
+                        ] = f"{index.abdc} {index.abs} {index.ft50} {index.scopus} {index.wos}".strip()
                         paperList.append(paper)
                         print(index.serial_no, index.journal_name, ratio)
                         break

@@ -26,7 +26,7 @@ INSTALLED_APPS = [
     "scholar.apps.ScholarConfig",
     "django.contrib.admin",
     "django.contrib.auth",
-    "django_otp",
+    # "django_otp",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
@@ -35,10 +35,10 @@ INSTALLED_APPS = [
     "corsheaders",
 ]
 
-OTP_AUTHENTICATION_BACKENDS = [
-    "django_otp.plugins.otp_totp.TOTPBackend",
-    "django_otp.plugins.otp_static.StaticBackend",
-]
+# OTP_AUTHENTICATION_BACKENDS = [
+#     "django_otp.plugins.otp_totp.TOTPBackend",
+#     "django_otp.plugins.otp_static.StaticBackend",
+# ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -125,6 +125,6 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-TWILIO_ACCOUNT_SID = "AC72f13a0082d9f9662c7280d2aa51c29a"
-TWILIO_AUTH_TOKEN = "c14827fa1ea0e37cf74d33ac936a8d33"
-TWILIO_PHONE_NUMBER = "+16075233410"
+# TWILIO_ACCOUNT_SID = "AC72f13a0082d9f9662c7280d2aa51c29a"
+# TWILIO_AUTH_TOKEN = "c14827fa1ea0e37cf74d33ac936a8d33"
+# TWILIO_PHONE_NUMBER = "+16075233410"

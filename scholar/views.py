@@ -5,7 +5,8 @@ from django.conf import settings
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from twilio.rest import Client
+
+# from twilio.rest import Client
 from .models import User, PaperIndex
 import os
 import errno
@@ -35,46 +36,46 @@ class SearchAPIView(APIView):
         return Response({"searchQuery": search_query, "papers": papers})
 
 
-def send_otp(request):
-    if request.method == "POST":
-        mobile_number = request.POST.get("mobile_number")
-        user, created = User.objects.get_or_create(mobile_number=mobile_number)
-        # if not created and user.is_verified:
-        # return HttpResponse("Mobile number already verified")
-        otp = generate_otp()
-        user.otp = otp
-        user.save()
-        send_otp_to_mobile_number(mobile_number, otp)
-        return redirect("scholar:verify_otp", mobile_number=mobile_number)
-    return render(request, "auth/send_otp.html")
+# def send_otp(request):
+#     if request.method == "POST":
+#         mobile_number = request.POST.get("mobile_number")
+#         user, created = User.objects.get_or_create(mobile_number=mobile_number)
+#         # if not created and user.is_verified:
+#         # return HttpResponse("Mobile number already verified")
+#         otp = generate_otp()
+#         user.otp = otp
+#         user.save()
+#         send_otp_to_mobile_number(mobile_number, otp)
+#         return redirect("scholar:verify_otp", mobile_number=mobile_number)
+#     return render(request, "auth/send_otp.html")
 
 
-def verify_otp(request, mobile_number):
-    if request.method == "POST":
-        user = User.objects.get(mobile_number=mobile_number)
-        otp = request.POST.get("otp")
-        if otp == user.otp:
-            user.is_verified = True
-            user.save()
-            return redirect("scholar:search")
-        return HttpResponse("Invalid OTP")
-    return render(request, "auth/verify_otp.html", {"mobile_number": mobile_number})
+# def verify_otp(request, mobile_number):
+#     if request.method == "POST":
+#         user = User.objects.get(mobile_number=mobile_number)
+#         otp = request.POST.get("otp")
+#         if otp == user.otp:
+#             user.is_verified = True
+#             user.save()
+#             return redirect("scholar:search")
+#         return HttpResponse("Invalid OTP")
+#     return render(request, "auth/verify_otp.html", {"mobile_number": mobile_number})
 
 
-def generate_otp():
-    import random
+# def generate_otp():
+#     import random
 
-    return str(random.randint(100000, 999999))
+#     return str(random.randint(100000, 999999))
 
 
-def send_otp_to_mobile_number(mobile_number, otp):
-    account_sid = settings.TWILIO_ACCOUNT_SID
-    auth_token = settings.TWILIO_AUTH_TOKEN
-    client = Client(account_sid, auth_token)
-    message = client.messages.create(
-        body=f"Your OTP is {otp}", from_=settings.TWILIO_PHONE_NUMBER, to=mobile_number
-    )
-    return message
+# def send_otp_to_mobile_number(mobile_number, otp):
+#     account_sid = settings.TWILIO_ACCOUNT_SID
+#     auth_token = settings.TWILIO_AUTH_TOKEN
+#     client = Client(account_sid, auth_token)
+#     message = client.messages.create(
+#         body=f"Your OTP is {otp}", from_=settings.TWILIO_PHONE_NUMBER, to=mobile_number
+#     )
+#     return message
 
 
 def index(request):
