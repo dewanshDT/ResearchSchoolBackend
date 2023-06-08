@@ -3,6 +3,9 @@ from fuzzywuzzy import process
 from bs4 import BeautifulSoup
 import requests
 import re
+import rest_framework_jwt
+
+print(rest_framework_jwt.__version__)
 
 
 # itemList = []
@@ -120,7 +123,7 @@ def getResearchPapers(query="", page=0):
             print("something went wrong")
 
 
-getResearchPapers()
+# getResearchPapers()
 
-ratio = fuzz.partial_ratio("mera naam", "mera naam shyaam hai")
-print(ratio)
+# ratio = fuzz.partial_ratio("mera naam", "mera naam shyaam hai")
+# print(ratio)

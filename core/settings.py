@@ -1,4 +1,8 @@
 from pathlib import Path
+import django
+from django.utils.encoding import smart_str
+
+django.utils.encoding.smart_text = smart_str
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -32,8 +36,20 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
+    "rest_framework_jwt",
     "corsheaders",
 ]
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework_jwt.authentication.JSONWebTokenAuthentication",
+    ],
+}
+
+JWT_AUTH = {
+    "JWT_SECRET_KEY": "rs-secret-onion",  # Replace with your own secret key
+    "JWT_ALGORITHM": "HS256",
+}
 
 OTP_AUTHENTICATION_BACKENDS = [
     "django_otp.plugins.otp_totp.TOTPBackend",
