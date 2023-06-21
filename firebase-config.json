@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "researchschool-auth",
+  "private_key_id": "46a4a086e14f295d44f5937f55e4184efb46f954",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCth/pUx+vMFdle\nrEpQo26an5OmXyQkNt0YP4Sx0vlw2+fDxo9F4zpT20YNrcuThL9H2COAr4e7ttXb\nSveQjkfOXOrzKh8rAo3IrDp2TNpPeGLZLB8Qm0TouzLUr6HAoQcENkizYf/3MY1A\nCTCST74OwyI8Y+gBE3toY/Bdpaq1gxxN1MUCVAhBuosHWo4HCMd6amPh4zoRantl\n5i0Nv2kxw4/wxsQaY43FIL07cDwKMIOGPv/8z66yCVE5pr6Rc/um5op9Hz5f1OGp\nlrMNOkuo939FQs2jF/tlNusQopgpeomDbqACECIAC8OYn6BhpbpHJUBGno4XSp0s\nnzZQC3wvAgMBAAECggEAPqk4Ur7yPXqySEZse1vYh4sR9OSsF0ucYLInB1NIcWFm\n+kHL4I+hs0AdtrjIJxerPpUklMZNfBIUfSA/7voBodnZmT7fjFdavVi7r5YmysWM\n5CDTgtqecm+OdlCJVxaOgw3bCLNdi3RgLfxjhqG23nvF9AqbbzAKwvI7jIVS9EGv\nWvaN5qSP6yX6LwZNi3ggwt7LUkw3rA9W5Aa8zOhvgvU+r4/V4QExpNaMvklA9oR6\n2CCCkU1MAZCE5JBSqTZnkUS2+myis81QjGTbkfv5V1G+/SwuQhjFQvvhGar71RyK\n9h9yTgZt68K2+ehj2GrpsXurtZmo6lcjZnVbxXQ3SQKBgQDvIzFlC70K4X88eomR\nVOBl3p6gOLuvciRzjYiAjE957mW4hxcwkMmbUkIU32bAEu5SZ/FEGWXEHibFpihz\nz4xfQ/gzmlS4EXGz6x4WUUDlQ5s5A0pPj9HLRjdAJjljW/cdTQo2BFQKgjO5uUc/\np8P9w+BU6usI6utrfzXMqLejgwKBgQC5xHzrZpoIxSEPQYJj/wrbfb/RzGdEx8OR\n9g247Zm6wsIMoIPTLfbSDKmRr/4y35Wwguz764zSU3MCmhyFAThFDxoVVxXNqmQ2\noOQpbjYCAT31w6ww2xZAQ4G9AfiOeChvPrpudCiX8D6gFGxs9oR0WAbunIRGHf6d\n5A3s3PNo5QKBgGh08/eSaBIfq+dsEzlTXO3Cj4GnJnydnESJV03nfDPjqbUv9TY2\nmInrJYheiVBvNID0fFPl0CkZjpAZY2QrDcLzOrC3wjfhDsyrcCoJdhJvNJdz03rr\ndJWZZzrzN3AqVMgMxeAQhfFNLHD8+J1al+b6L7yIHQB5NTpwh7yNGiInAoGAeZLX\n1g79u8OXES7kMKEW7/Jp+Nl2tBKwMPQAowgMVadj63OZEjnAkFLtHoU5LP4aLrxg\nb7YGIRev6wIErB7SPo/VmCW4BTMABqhg6aRRABrj+9Uk+YxIEaKcY5/IlSSaAcPh\nqqumbVkzAvyawOzMXn/FeZ9BCcpTee1oF526RukCgYAJQB3YcYkJNL10sI3u/X07\nk1fWqTI0/bALLFdxgX2vzlKtiYPy4MfgOuyoCu4ifZSOgBMF+yXtoOidw7Ssipsw\np2K+d1ODJpDNWf7adBsXbNJoVutuC9anVk1Ib7TUfKIm4t+bTnTNYIOz5XrKoGok\nhS5VPW9EznsE8ViTRY+q4g==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-bglol@researchschool-auth.iam.gserviceaccount.com",
+  "client_id": "100897034741488617622",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-bglol%40researchschool-auth.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

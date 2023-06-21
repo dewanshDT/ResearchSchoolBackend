@@ -5,6 +5,11 @@ from django.conf import settings
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from firebase_admin import credentials, initialize_app, auth
+
+firebase_creds = credentials.Certificate(settings.FIREBASE_CONFIG)
+firebase_app = initialize_app(firebase_creds)
+print("🔥Firebase: ", firebase_app.name)
 
 # from twilio.rest import Client
 from .models import User, PaperIndex
@@ -24,6 +29,18 @@ class SearchAPIView(APIView):
         search_query = request.GET.get("q")
         papers = []
         error = None
+
+        auth_header = request.META.get("HTTP_AUTHORIZATION")
+        token =auth_header.strip('Bearer ')
+        print("🪙 ", token)
+        
+        try: 
+            decoded_token = auth.verify_id_token(token)
+            print(decoded_token)
+            user_id = decoded_token['user_id']
+            print("👤 ", user_id)
+        except:
+            print("invalid token")
 
         if search_query:
             res = getPapers(search_query, 1)
