@@ -23,6 +23,8 @@ ALLOWED_HOSTS = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    "https://researchschool.vercel.app/",
+    "https://theresearchschool.com",
 ]
 
 
