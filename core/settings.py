@@ -14,7 +14,12 @@ SECRET_KEY = "django-insecure-w5&^r^k3^+^1bd%j52p%9bx)j86g=osoc@l2x4%(_0ij3o(tzm
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost"]
+ALLOWED_HOSTS = [
+    "localhost",
+    "researchschool.azurewebsites.net",
+    "theresearchschool.com",
+    "researchschool.vercel.app",
+]
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
