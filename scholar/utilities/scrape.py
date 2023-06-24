@@ -44,6 +44,7 @@ def getResearchPapers(query="", page=0):
     print(res.status_code)
     soup = BeautifulSoup(res.content, "html.parser")
     items = soup.find_all("div", class_=["s_r", "gs_or", "gs_scl"])
+    print(items)
 
     for item in items:
         try:

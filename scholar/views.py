@@ -27,23 +27,25 @@ class IndexAPIView(APIView):
 class SearchAPIView(APIView):
     def get(self, request):
         search_query = request.GET.get("q")
+        req_papers = int(request.GET.get("qty")) if request.GET.get("qty") else 1
         papers = []
         error = None
 
         auth_header = request.META.get("HTTP_AUTHORIZATION")
-        token =auth_header.strip('Bearer ')
-        print("🪙 ", token)
-        
-        try: 
-            decoded_token = auth.verify_id_token(token)
-            print(decoded_token)
-            user_id = decoded_token['user_id']
-            print("👤 ", user_id)
-        except:
-            print("invalid token")
+        if auth_header:
+            token = auth_header.strip("Bearer ")
+            print("🪙 ", token)
+            try:
+                decoded_token = auth.verify_id_token(token)
+                print(decoded_token)
+                user_id = decoded_token["user_id"]
+                print("👤 ", user_id)
+            except:
+                print("invalid token")
 
         if search_query:
-            res = getPapers(search_query, 1)
+            print(search_query)
+            res = getPapers(search_query, req_papers)
             papers = res.itemList
             error = res.error
 

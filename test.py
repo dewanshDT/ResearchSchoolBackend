@@ -63,7 +63,7 @@ def getResearchPapers(query="", page=0):
     itemList = []
     status = 200
     error = None
-    url = "https://scholar.google.com/scholar?start=20&q=arrays&hl=en&as_sdt=0,5"
+    url = f'https://scholar.google.com/scholar?start={0 if page == 1 else page * 10}&hl=en&as_sdt=0%2C5&q={query.replace(" ", "+")}'
     res = requests.get(url)
     if res.status_code == 429:
         status = res.status_code
@@ -94,7 +94,7 @@ def getResearchPapers(query="", page=0):
             # print(subTitle)
             # print(year)
             # print(authors)
-            print(citations)
+            print(title)
 
             # itemList.append(
             #     {
@@ -120,7 +120,7 @@ def getResearchPapers(query="", page=0):
             print("something went wrong")
 
 
-getResearchPapers()
+getResearchPapers("fuzzy logic")
 
 ratio = fuzz.partial_ratio("mera naam", "mera naam shyaam hai")
 print(ratio)
